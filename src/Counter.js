@@ -1,18 +1,20 @@
-import React from 'react';
-
-import { useCount } from './CountContext';
+import React, { useState, useContext } from 'react';
+import { useCount, CountContext } from './CountContext';
 
 const Counter = () => {
   // set dispatch and state count from useCount()
+  const count = useCount()
+  console.log(count)
+
 
   return (
     <>
       {/* change 0 with count from context */}
-      Count: 0
+      Count: {count.state.count}
       <div>
         {/* use dispatch for onClick method */}
-        <button className="count-button" onClick={() => { }} >+</button>
-        <button className="count-button" onClick={() => { }}>-</button>
+        <button className="count-button" onClick={() => count.dispatch({type: 'increment'})} >+</button>
+        <button className="count-button" onClick={() => count.dispatch({type: 'decrement'})}>-</button>
       </div>
     </>
   );
